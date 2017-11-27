@@ -152,7 +152,7 @@ class KnowthycustomerConnector(BaseConnector):
         # Add an action result object to self (BaseConnector) to represent the action for this param
         action_result = self.add_action_result(ActionResult(dict(param)))
 
-        self.save_progress("Connecting to {0}".format(self._base_url))
+        self.save_progress("Connecting to {0} to get the version".format(self._base_url))
         # make rest call
         ret_val, response = self._make_rest_call('/version', action_result, params=None, headers=None)
 
@@ -166,6 +166,16 @@ class KnowthycustomerConnector(BaseConnector):
 
         if (version):
             self.save_progress("Got version: {0}".format(version))
+
+        self.save_progress("Validating API Key")
+        # make rest call
+        ret_val, response = self._make_rest_call('/person', action_result, params={'bvid': 'test_connectivity'}, headers=None)
+
+        if (phantom.is_fail(ret_val)):
+            # the call to the 3rd party device or service failed, action result should contain all the error details
+            # so just return from here
+            self.save_progress("Test Connectivity Failed. Possibly invalid API Key.")
+            return action_result.get_status()
 
         # Return success
         self.save_progress("Test Connectivity Passed")
