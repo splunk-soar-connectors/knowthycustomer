@@ -1,0 +1,1514 @@
+{
+    "appid": "5371a577-5757-4b7d-bb2e-3be506b9411e",
+    "name": "KnowThyCustomer",
+    "description": "This app integrates with the KnowThyCustomer service to implement investigative actions",
+    "type": "identity management",
+    "product_vendor": "KnowThyCustomer",
+    "logo": "knowthycustomer.png",
+    "product_name": "KnowThyCustomer",
+    "product_version_regex": ".*",
+    "publisher": "Phantom",
+    "license": "Copyright (c) Phantom Cyber Corporation 2017",
+    "app_version": "1.0.0",
+    "utctime_updated": "2017-11-22T00:49:41.118392Z",
+    "package_name": "phantom_knowthycustomer",
+    "main_module": "knowthycustomer_connector.pyc",
+    "min_phantom_version": "3.0.264",
+    "app_wizard_version": "1.0.0",
+    "configuration": {
+        "api_key": {
+            "description": "API Key",
+            "data_type": "password",
+            "required": true,
+            "order": 0
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get user attributes",
+            "identifier": "get_user_attributes",
+            "description": "Gets the attributes of a user",
+            "verbose": "You can enter any of the following valid combinations to generate a person report:<ul><li>first_name, last_name, address</li><li>first_name, last_nname, phone</li><li>first_name, last_name, address, phone</li><li>bvid</li></ul>",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "first_name": {
+                    "description": "First Name",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "order": 0
+                },
+                "last_name": {
+                    "description": "Last Name",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": true,
+                    "order": 1
+                },
+                "address": {
+                    "description": "Address",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "order": 2
+                },
+                "phone": {
+                    "description": "Phone",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [
+                        "phone"
+                    ],
+                    "order": 3
+                },
+                "bvid": {
+                    "description": "Person Unique Identifier",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": true,
+                    "contains": [
+                        "ktc user id"
+                    ],
+                    "order": 4
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.first_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Atif",
+                        "Ryan"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.last_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Mahadik",
+                        "Means"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.address",
+                    "data_type": "string",
+                    "example_values": [
+                        "34277 Duffy Terrace, Fremont CA 94555",
+                        "88 monza court, Danville CA 94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.phone",
+                    "data_type": "string",
+                    "contains": [
+                        "phone"
+                    ],
+                    "example_values": [
+                        "5103049412"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.bvid",
+                    "data_type": "string",
+                    "contains": [
+                        "ktc user id"
+                    ]
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "Parameter combination validations failed. Please see the action documentation to get a list of valid parameter validations",
+                        "User found: True"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "34277 Duffy Ter Fremont, CA 94555",
+                        "88 Monza Ct Danville, CA 94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -122.052689,
+                        -121.967033
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Fremont",
+                        "Danville"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "94555",
+                        "94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.house_number",
+                    "data_type": "string",
+                    "example_values": [
+                        "34277",
+                        "88"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.country",
+                    "data_type": "string",
+                    "example_values": [
+                        "US",
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Duffy",
+                        "Monza"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.pre_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "CA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.street_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "Ter",
+                        "Ct"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.unit",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.zip4",
+                    "data_type": "string",
+                    "example_values": [
+                        "3838",
+                        "1962"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        37.56522,
+                        37.82542
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2008-01-23",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2013-07-00",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2009-03-00",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.number",
+                    "data_type": "string",
+                    "example_values": [
+                        "5107451801",
+                        "9257431138"
+                    ],
+                    "contains": [
+                        "phone"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.country_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2013-07-00",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "34276 Duffy Ter Fremont, CA 94555",
+                        "84 Monza Ct Danville, CA 94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -122.053062,
+                        -121.967033
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Fremont",
+                        "Danville"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "94555",
+                        "94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.house_number",
+                    "data_type": "string",
+                    "example_values": [
+                        "34276",
+                        "84"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.country",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Duffy",
+                        "Monza"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.pre_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "CA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.street_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "Ter",
+                        "Ct"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.unit",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.zip4",
+                    "data_type": "string",
+                    "example_values": [
+                        "3837",
+                        "1962"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        37.565399,
+                        37.82542
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2013-06-00",
+                        "1996-09-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2017-08-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "BAT-ERDENE GONGORBAATAR",
+                        "EVELINA C YU"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.first_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "BAT-ERDENE",
+                        "EVELINA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.last_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "GONGORBAATAR",
+                        "YU"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.middle_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "C"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "N_MDYyNzA4MzY2NTk4",
+                        "N_MDAyNzgzMzIyNTgx"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        35,
+                        42
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1982-04-08",
+                        "1974-12-16"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "34277 Duffy Ter Fremont, CA 94555",
+                        "88 Monza Ct Danville, CA 94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -122.052689,
+                        -121.967033
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Fremont",
+                        "Danville"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "94555",
+                        "94526"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.house_number",
+                    "data_type": "string",
+                    "example_values": [
+                        "34277",
+                        "88"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.country",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Duffy",
+                        "Monza"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.pre_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "CA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.street_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "Ter",
+                        "Ct"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.unit",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.zip4",
+                    "data_type": "string",
+                    "example_values": [
+                        "3838",
+                        "1962"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        37.56522,
+                        37.82542
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2016-10-00",
+                        "2006-08-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2016-10-00",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.last_cohabitate",
+                    "data_type": "string",
+                    "example_values": [
+                        "2017-09-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "HEENA MAHADIK",
+                        "KAREN B MEANS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.first_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HEENA",
+                        "KAREN"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.last_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "MAHADIK",
+                        "MEANS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.middle_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "B"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "N_MTM5MzI5OTQ3Mjc4",
+                        "N_MDAwMTU4MTAxMjQx"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.images.*.url",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://d2ojpxxtu63wzl.cloudfront.net/static/b9e7d8369237b3cd877bfbcf9995f4e0_2b3a052ff6b0268e9c870e97f4ab0b7ceb464028ed6af60754292146056ede1d"
+                    ],
+                    "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.images.*.source",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.images.*.thumb",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://caramel.datadeckio.com/image?height=250&width=250&zoom_face=true&tokens=AE2861B20B7D6E22DD9E4C9F4D2593F28ACEB57ACA5DE8A67BB0C9FF892F56A75F7DDBD08292A8253FDE9E725B7FDB416E170BB1E804C549949B224F0410166EA7CF926357E879B35212E2BE97D8A2B1ED96EB79FBA346DB28864AB8847F388AECC7B216545734158BDC9FB95346717AB50932B99AEAC20D6D29E0F142C6A5F11478EE7B6346EF284C12BB442A25D028334682434222BF307E"
+                    ],
+                    "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.images.*.confidence_score",
+                    "data_type": "numeric",
+                    "example_values": [
+                        25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "ATIF MAHADIK",
+                        "RYAN MEANS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.parts.first_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "ATIF",
+                        "RYAN"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.parts.last_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "MAHADIK",
+                        "MEANS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.parts.middle_name",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.usernames.*.username",
+                    "data_type": "string",
+                    "example_values": [
+                        "atif.mahadik"
+                    ],
+                    "contains": [
+                        "user name"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.usernames.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2012-10-02"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.usernames.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.languages.*.region",
+                    "data_type": "string",
+                    "example_values": [
+                        "US"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.languages.*.language",
+                    "data_type": "string",
+                    "example_values": [
+                        "en"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report_info.response_time",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1.072886623,
+                        4.668284976,
+                        0.08471299900000001
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.report_info.report_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "76f9dc81-c4d8-4d4b-8dd3-4e89b2bf43ea",
+                        "c0845273-1594-44d3-bd50-f59d4aa310ea",
+                        "edcf0795-492f-4cd1-936f-f79fc37833b7"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.industry",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.title",
+                    "data_type": "string",
+                    "example_values": [
+                        "Senior Principal Software Engineer"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.company",
+                    "data_type": "string",
+                    "example_values": [
+                        "Symantec"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.period.start",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.period.end",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2012-09-19"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.user_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "13004392@linkedin"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.email_address",
+                    "data_type": "string",
+                    "example_values": [
+                        "atifmahadik@gmail.com",
+                        "SLOOKY25@YAHOO.COM"
+                    ],
+                    "contains": [
+                        "email"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.is_disposable",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.address_md5",
+                    "data_type": "string",
+                    "example_values": [
+                        "3cdcd6d66f233365a65406165695cd28",
+                        ""
+                    ],
+                    "contains": [
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "2012-03-30"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "personal",
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.is_public_provider",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "2017-09-21"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.gender",
+                    "data_type": "string",
+                    "example_values": [
+                        "male",
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.category",
+                    "data_type": "string",
+                    "example_values": [
+                        "personal_profiles",
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.bio",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.domain",
+                    "data_type": "string",
+                    "example_values": [
+                        "facebook.com",
+                        ""
+                    ],
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.url",
+                    "data_type": "string",
+                    "example_values": [
+                        "http://facebook.com/people/_/100000292872488",
+                        "https://gravatar.com/xxmbirxx"
+                    ],
+                    "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.source",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.sponsored",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "facebook",
+                        "gravatar"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.bvids",
+                    "data_type": "string",
+                    "example_values": [
+                        "N_MDM4Nzg5OTQwMTU5",
+                        "N_MTY4MjUwMTI3OTU0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        23
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.number",
+                    "data_type": "string",
+                    "example_values": [
+                        "9257431138"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.country_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        61
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "1052 W 19th St Upland, CA 91784"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -117.666321
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Upland"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "91784"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.house_number",
+                    "data_type": "string",
+                    "example_values": [
+                        "1052"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.country",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "19th"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.pre_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        "W"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "CA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "St"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.unit",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip4",
+                    "data_type": "string",
+                    "example_values": [
+                        "1572"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        34.13213
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "1993-01-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2015-12-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_cohabitate",
+                    "data_type": "string",
+                    "example_values": [
+                        "2017-06-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.number",
+                    "data_type": "string",
+                    "example_values": [
+                        "9099855406"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.country_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        86
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.full",
+                    "data_type": "string",
+                    "example_values": [
+                        "HELEN COMBS BAXTER"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.first_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HELEN"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.last_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "BAXTER"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.middle_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "COMBS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1931-08-28"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "N_MDAwMTU4MDk5Njg3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1956-01-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1994-10-25"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.user_found",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                }
+            ],
+            "render": {
+                "type": "custom",
+                "view": "knowthycustomer_view.display_person_info"
+            },
+            "versions": "EQ(*)"
+        }
+    ]
+}
