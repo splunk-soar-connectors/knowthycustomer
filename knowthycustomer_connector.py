@@ -183,10 +183,6 @@ class KnowthycustomerConnector(BaseConnector):
 
     def _handle_get_user_attributes(self, param):
 
-        # Implement the handler here
-        # use self.save_progress(...) to send progress messages back to the platform
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
-
         # Add an action result object to self (BaseConnector) to represent the action for this param
         action_result = self.add_action_result(ActionResult(dict(param)))
 
