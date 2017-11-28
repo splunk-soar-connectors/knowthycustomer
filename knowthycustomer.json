@@ -13,7 +13,7 @@
     "utctime_updated": "2017-11-22T00:49:41.118392Z",
     "package_name": "phantom_knowthycustomer",
     "main_module": "knowthycustomer_connector.pyc",
-    "min_phantom_version": "3.0.264",
+    "min_phantom_version": "3.0.251",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "api_key": {
@@ -36,10 +36,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get user attributes",
+            "action": "get user",
             "identifier": "get_user_attributes",
             "description": "Gets the attributes of a user",
-            "verbose": "You can enter any of the following valid combinations to generate a person report:<ul><li>first_name, last_name, address</li><li>first_name, last_nname, phone</li><li>first_name, last_name, address, phone</li><li>bvid</li></ul>",
+            "verbose": "You can enter any of the following valid combinations to generate a person report:<ul><li>first_name, last_name, address</li><li>first_name, last_name, phone</li><li>first_name, last_name, address, phone</li><li>bvid</li></ul>The search is an <b>And</b> of all passed parameters, therefore if all 5 parameters are passed a user has to match all of them.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
