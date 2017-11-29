@@ -8,7 +8,7 @@
     "product_name": "KnowThyCustomer",
     "product_version_regex": ".*",
     "publisher": "Phantom",
-    "license": "Copyright (c) Phantom Cyber Corporation 2017",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2017",
     "app_version": "1.0.1",
     "utctime_updated": "2017-11-28T23:53:45.000000Z",
     "package_name": "phantom_knowthycustomer",
