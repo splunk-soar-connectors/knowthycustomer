@@ -39,7 +39,7 @@
             "action": "get user",
             "identifier": "get_user_attributes",
             "description": "Gets the attributes of a user",
-            "verbose": "You can enter any of the following valid combinations to generate a person report:<ul><li>first_name, last_name, address</li><li>first_name, last_name, phone</li><li>first_name, last_name, address, phone</li><li>bvid</li></ul>The search is an <b>And</b> of all passed parameters, therefore if all 5 parameters are passed a user has to match all of them.",
+            "verbose": "You can enter any of the following valid combinations to generate a person report:<ul><li>first_name, last_name, address</li><li>first_name, last_name, phone</li><li>first_name, last_name, address, phone</li><li>bvid</li></ul>If <b>bvid</b> is provided, the rest of the inputs are ignored. The remaining parameters act as additional helper information if the other criteria do not produce a match or if multiple matches occur. They could also be used to disambiguate. For example, if George Clooney Sr. and George Clooney Jr. live at the same address, the <b>phone</b> parameter could be used to differentiate between the two.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
