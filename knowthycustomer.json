@@ -4,14 +4,13 @@
     "description": "This app integrates with the KnowThyCustomer service to implement investigative actions",
     "type": "identity management",
     "product_vendor": "KnowThyCustomer",
-    "logo": "logo_knowthycustomer.svg",
-    "logo_dark": "logo_knowthycustomer_dark.svg",
+    "logo": "knowthycustomer.png",
     "product_name": "KnowThyCustomer",
     "product_version_regex": ".*",
     "publisher": "Phantom",
     "license": "Copyright (c) Phantom Cyber Corporation, 2017",
-    "app_version": "1.0.5",
-    "utctime_updated": "2017-12-21T03:23:50.000000Z",
+    "app_version": "1.0.3",
+    "utctime_updated": "2017-11-30T23:41:32.000000Z",
     "package_name": "phantom_knowthycustomer",
     "main_module": "knowthycustomer_connector.pyc",
     "min_phantom_version": "3.0.251",
@@ -88,31 +87,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "example_values": [
-                        "success",
-                        "failed"
-                    ]
-                },
-                {
-                    "data_path": "action_result.parameter.address",
-                    "data_type": "string",
-                    "example_values": [
-                        "1407 Graymalkin Lane, North Salem, NY 10560"
-                    ]
-                },
-                {
-                    "data_path": "action_result.parameter.bvid",
-                    "data_type": "string",
-                    "contains": [
-                        "ktc user id"
-                    ],
-                    "example_values": [
-                        "N_MDM1Nag7OTrRlll5"
-                    ]
-                },
-                {
                     "data_path": "action_result.parameter.first_name",
                     "data_type": "string",
                     "example_values": [
@@ -127,6 +101,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.parameter.address",
+                    "data_type": "string",
+                    "example_values": [
+                        "1407 Graymalkin Lane, North Salem, NY 10560"
+                    ]
+                },
+                {
                     "data_path": "action_result.parameter.phone",
                     "data_type": "string",
                     "contains": [
@@ -137,10 +118,46 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.first_seen",
+                    "data_path": "action_result.parameter.bvid",
+                    "data_type": "string",
+                    "contains": [
+                        "ktc user id"
+                    ],
+                    "example_values": [
+                        "N_MDM1Nag7OTrRlll5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
-                        "2000-01-01"
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "Parameter combination validations failed. Please see the action documentation to get a list of valid parameter validations",
+                        "User found: True",
+                        "User found: False"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1,
+                        0
                     ]
                 },
                 {
@@ -151,17 +168,18 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.last_seen",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
                     "example_values": [
-                        "2017-11-11"
+                        true,
+                        false
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.latitude",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.addresses.*.precision",
+                    "data_type": "string",
                     "example_values": [
-                        41.3350356
+                        "zip9"
                     ]
                 },
                 {
@@ -179,11 +197,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.parts.country",
+                    "data_path": "action_result.data.*.addresses.*.parts.post_direction",
                     "data_type": "string",
                     "example_values": [
-                        "US",
                         ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "10560"
                     ]
                 },
                 {
@@ -194,10 +218,18 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.parts.post_direction",
+                    "data_path": "action_result.data.*.addresses.*.parts.country",
                     "data_type": "string",
                     "example_values": [
+                        "US",
                         ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Graymalkin"
                     ]
                 },
                 {
@@ -215,13 +247,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.parts.street_name",
-                    "data_type": "string",
-                    "example_values": [
-                        "Graymalkin"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.addresses.*.parts.street_type",
                     "data_type": "string",
                     "example_values": [
@@ -236,13 +261,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.parts.zip",
-                    "data_type": "string",
-                    "example_values": [
-                        "10560"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.addresses.*.parts.zip4",
                     "data_type": "string",
                     "example_values": [
@@ -250,18 +268,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.precision",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.addresses.*.latitude",
+                    "data_type": "numeric",
                     "example_values": [
-                        "zip9"
+                        41.3350356
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.addresses.*.property_record_available",
-                    "data_type": "boolean",
+                    "data_path": "action_result.data.*.addresses.*.first_seen",
+                    "data_type": "string",
                     "example_values": [
-                        true,
-                        false
+                        "2000-01-01"
                     ]
                 },
                 {
@@ -272,25 +289,50 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ages",
+                    "data_path": "action_result.data.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2017-11-11"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2009-03-00",
+                        "2017-05-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.number",
+                    "data_type": "string",
+                    "example_values": [
+                        "5101112222"
+                    ],
+                    "contains": [
+                        "phone"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.phones.*.country_code",
                     "data_type": "numeric",
                     "example_values": [
-                        23
+                        0
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.bvids",
+                    "data_path": "action_result.data.*.phones.*.last_seen",
                     "data_type": "string",
                     "example_values": [
-                        "N_MTB5MjUqMTI4ORQ1"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2013-06-00",
-                        "1996-09-00"
+                        "2013-07-00",
+                        "2017-05-00"
                     ]
                 },
                 {
@@ -301,17 +343,18 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.last_seen",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
                     "example_values": [
-                        "2017-08-00"
+                        true,
+                        false
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.latitude",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.precision",
+                    "data_type": "string",
                     "example_values": [
-                        41.3350356
+                        "zip9"
                     ]
                 },
                 {
@@ -329,10 +372,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.country",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.post_direction",
                     "data_type": "string",
                     "example_values": [
                         ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "10560"
                     ]
                 },
                 {
@@ -343,10 +393,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.post_direction",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.country",
                     "data_type": "string",
                     "example_values": [
                         ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "Graymalkin"
                     ]
                 },
                 {
@@ -364,13 +421,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.street_name",
-                    "data_type": "string",
-                    "example_values": [
-                        "Graymalkin"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.street_type",
                     "data_type": "string",
                     "example_values": [
@@ -385,13 +435,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.zip",
-                    "data_type": "string",
-                    "example_values": [
-                        "10560"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.parts.zip4",
                     "data_type": "string",
                     "example_values": [
@@ -399,18 +442,18 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.precision",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.latitude",
+                    "data_type": "numeric",
                     "example_values": [
-                        "zip9"
+                        41.3350356
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.property_record_available",
-                    "data_type": "boolean",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.first_seen",
+                    "data_type": "string",
                     "example_values": [
-                        true,
-                        false
+                        "2013-06-00",
+                        "1996-09-00"
                     ]
                 },
                 {
@@ -421,17 +464,54 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.ages",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.connections.neighbors.*.addresses.*.last_seen",
+                    "data_type": "string",
                     "example_values": [
-                        42
+                        "2017-08-00"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.dobs",
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.first_seen",
                     "data_type": "string",
                     "example_values": [
-                        "1970-12-13"
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.full",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.first_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.last_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.middle_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
                     ]
                 },
                 {
@@ -456,55 +536,17 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.first_seen",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.connections.neighbors.*.ages",
+                    "data_type": "numeric",
                     "example_values": [
-                        ""
+                        42
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.full",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.last_seen",
+                    "data_path": "action_result.data.*.connections.neighbors.*.dobs",
                     "data_type": "string",
                     "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.first_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.last_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.middle_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.salutation",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.neighbors.*.names.*.parts.suffix",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2016-10-00",
-                        "2006-08-00"
+                        "1970-12-13"
                     ]
                 },
                 {
@@ -512,16 +554,19 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.last_seen",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
                     "example_values": [
-                        "2016-10-00",
-                        "2017-05-00"
+                        true,
+                        false
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.latitude",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.connections.relatives.*.addresses.*.longitude",
@@ -532,6 +577,21 @@
                     "data_type": "string"
                 },
                 {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.zip",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.house_number",
+                    "data_type": "string"
+                },
+                {
                     "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.country",
                     "data_type": "string",
                     "example_values": [
@@ -539,15 +599,8 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.house_number",
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.street_name",
                     "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.post_direction",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
                 },
                 {
                     "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.pre_direction",
@@ -564,10 +617,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.street_name",
-                    "data_type": "string"
-                },
-                {
                     "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.street_type",
                     "data_type": "string"
                 },
@@ -579,10 +628,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.zip",
-                    "data_type": "string"
-                },
-                {
                     "data_path": "action_result.data.*.connections.relatives.*.addresses.*.parts.zip4",
                     "data_type": "string",
                     "example_values": [
@@ -590,18 +635,15 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.precision",
-                    "data_type": "string",
-                    "example_values": [
-                        "zip9"
-                    ]
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.latitude",
+                    "data_type": "numeric"
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.property_record_available",
-                    "data_type": "boolean",
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.first_seen",
+                    "data_type": "string",
                     "example_values": [
-                        true,
-                        false
+                        "2016-10-00",
+                        "2006-08-00"
                     ]
                 },
                 {
@@ -612,39 +654,18 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.ages",
-                    "data_type": "numeric",
-                    "example_values": [
-                        61
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.dobs",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.first_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.addresses.*.last_seen",
                     "data_type": "string",
                     "example_values": [
-                        ""
+                        "2016-10-00",
+                        "2017-05-00"
                     ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.id",
-                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.connections.relatives.*.last_cohabitate",
                     "data_type": "string",
                     "example_values": [
                         "2017-09-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
                     ]
                 },
                 {
@@ -659,7 +680,7 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.names.*.last_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.salutation",
                     "data_type": "string",
                     "example_values": [
                         ""
@@ -678,13 +699,6 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.salutation",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.connections.relatives.*.names.*.parts.suffix",
                     "data_type": "string",
                     "example_values": [
@@ -692,366 +706,35 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.country_code",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.first_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.names.*.last_seen",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.last_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.first_seen",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.number",
-                    "data_type": "string",
-                    "example_values": [
-                        "51000002222"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "1993-01-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.full",
+                    "data_path": "action_result.data.*.connections.relatives.*.id",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2015-12-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.latitude",
-                    "data_type": "numeric",
-                    "example_values": [
-                        41.3350356
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.longitude",
-                    "data_type": "numeric",
-                    "example_values": [
-                        -73.57190509999998
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.city",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.country",
+                    "data_path": "action_result.data.*.connections.relatives.*.last_seen",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.house_number",
+                    "data_path": "action_result.data.*.images.*.url",
                     "data_type": "string",
-                    "example_values": [
-                        "1000"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.post_direction",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.pre_direction",
-                    "data_type": "string",
-                    "example_values": [
-                        "W"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "NY"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_name",
-                    "data_type": "string",
-                    "example_values": [
-                        "25th"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_type",
-                    "data_type": "string",
-                    "example_values": [
-                        "St"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.unit",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip",
-                    "data_type": "string",
-                    "example_values": [
-                        "91784"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip4",
-                    "data_type": "string",
-                    "example_values": [
-                        "1572"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.precision",
-                    "data_type": "string",
-                    "example_values": [
-                        "zip9"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.property_record_available",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.ages",
-                    "data_type": "numeric",
-                    "example_values": [
-                        86
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.dobs",
-                    "data_type": "string",
-                    "example_values": [
-                        "1931-08-28"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.id",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_cohabitate",
-                    "data_type": "string",
-                    "example_values": [
-                        "2017-06-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.full",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.first_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.last_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.middle_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.salutation",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.suffix",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.country_code",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.number",
-                    "data_type": "string",
-                    "example_values": [
-                        "5102223333"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.dobs",
-                    "data_type": "string",
-                    "example_values": [
-                        "1994-10-25"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.address_md5",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ],
                     "contains": [
-                        "md5"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.email_address",
-                    "data_type": "string",
-                    "example_values": [
-                        "charles@xavier.com"
-                    ],
-                    "contains": [
-                        "email"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "",
-                        "2012-03-30"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.is_disposable",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.is_public_provider",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "",
-                        "2017-09-21"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.emails.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "personal",
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.gender",
-                    "data_type": "string",
-                    "example_values": [
-                        "male",
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.images.*.confidence_score",
-                    "data_type": "numeric",
-                    "example_values": [
-                        25
+                        "url"
                     ]
                 },
                 {
@@ -1069,59 +752,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.images.*.url",
-                    "data_type": "string",
-                    "contains": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.jobs.*.company",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.images.*.confidence_score",
+                    "data_type": "numeric",
                     "example_values": [
-                        "X-Men"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.jobs.*.industry",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.jobs.*.period.end",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.jobs.*.period.start",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.jobs.*.title",
-                    "data_type": "string",
-                    "example_values": [
-                        "Principal"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.languages.*.language",
-                    "data_type": "string",
-                    "example_values": [
-                        "en"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.languages.*.region",
-                    "data_type": "string",
-                    "example_values": [
-                        "US"
+                        25
                     ]
                 },
                 {
@@ -1139,7 +773,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.names.*.last_seen",
+                    "data_path": "action_result.data.*.names.*.parts.salutation",
                     "data_type": "string",
                     "example_values": [
                         ""
@@ -1167,13 +801,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.names.*.parts.salutation",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.names.*.parts.suffix",
                     "data_type": "string",
                     "example_values": [
@@ -1181,50 +808,48 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.phones.*.country_code",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.phones.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2009-03-00",
-                        "2017-05-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.phones.*.last_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2013-07-00",
-                        "2017-05-00"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.phones.*.number",
-                    "data_type": "string",
-                    "example_values": [
-                        "5101112222"
-                    ],
-                    "contains": [
-                        "phone"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.phones.*.type",
+                    "data_path": "action_result.data.*.names.*.last_seen",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.report_info.report_id",
+                    "data_path": "action_result.data.*.usernames.*.username",
                     "data_type": "string",
                     "example_values": [
-                        "1823592a-2cff-467a-9053-ce0c8f451b7b"
+                        "charles.xavier"
+                    ],
+                    "contains": [
+                        "user name"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.usernames.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2000-12-13"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.usernames.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.languages.*.region",
+                    "data_type": "string",
+                    "example_values": [
+                        "US"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.languages.*.language",
+                    "data_type": "string",
+                    "example_values": [
+                        "en"
                     ]
                 },
                 {
@@ -1237,9 +862,133 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.social.*.bio",
+                    "data_path": "action_result.data.*.report_info.report_id",
                     "data_type": "string",
                     "example_values": [
+                        "1823592a-2cff-467a-9053-ce0c8f451b7b"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.industry",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.title",
+                    "data_type": "string",
+                    "example_values": [
+                        "Principal"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.company",
+                    "data_type": "string",
+                    "example_values": [
+                        "X-Men"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.period.start",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.jobs.*.period.end",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2000-12-19"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.user_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "11111111@linkedin"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.user_ids.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.email_address",
+                    "data_type": "string",
+                    "example_values": [
+                        "charles@xavier.com"
+                    ],
+                    "contains": [
+                        "email"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.is_disposable",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.address_md5",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ],
+                    "contains": [
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "2012-03-30"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "personal",
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.is_public_provider",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.emails.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "",
+                        "2017-09-21"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.gender",
+                    "data_type": "string",
+                    "example_values": [
+                        "male",
                         ""
                     ]
                 },
@@ -1252,6 +1001,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.social.*.bio",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.social.*.domain",
                     "data_type": "string",
                     "example_values": [
@@ -1260,6 +1016,16 @@
                     ],
                     "contains": [
                         "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.social.*.url",
+                    "data_type": "string",
+                    "example_values": [
+                        "http://facebook.com/people/_/100000111111111"
+                    ],
+                    "contains": [
+                        "url"
                     ]
                 },
                 {
@@ -1285,58 +1051,316 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.social.*.url",
+                    "data_path": "action_result.data.*.bvids",
                     "data_type": "string",
                     "example_values": [
-                        "http://facebook.com/people/_/100000111111111"
-                    ],
-                    "contains": [
-                        "url"
+                        "N_MTB5MjUqMTI4ORQ1"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.user_ids.*.first_seen",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.ages",
+                    "data_type": "numeric",
                     "example_values": [
-                        "2000-12-19"
+                        23
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.user_ids.*.last_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.first_seen",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.user_ids.*.user_id",
-                    "data_type": "string",
-                    "example_values": [
-                        "11111111@linkedin"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.usernames.*.first_seen",
-                    "data_type": "string",
-                    "example_values": [
-                        "2000-12-13"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.usernames.*.last_seen",
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.type",
                     "data_type": "string",
                     "example_values": [
                         ""
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.usernames.*.username",
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.number",
                     "data_type": "string",
                     "example_values": [
-                        "charles.xavier"
-                    ],
-                    "contains": [
-                        "user name"
+                        "51000002222"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.country_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.phones.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        61
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.full",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.property_record_available",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.precision",
+                    "data_type": "string",
+                    "example_values": [
+                        "zip9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -73.57190509999998
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.city",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.post_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip",
+                    "data_type": "string",
+                    "example_values": [
+                        "91784"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.house_number",
+                    "data_type": "string",
+                    "example_values": [
+                        "1000"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.country",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "25th"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.pre_direction",
+                    "data_type": "string",
+                    "example_values": [
+                        "W"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "NY"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.street_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "St"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.unit",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.parts.zip4",
+                    "data_type": "string",
+                    "example_values": [
+                        "1572"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        41.3350356
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "1993-01-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.addresses.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        "2015-12-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_cohabitate",
+                    "data_type": "string",
+                    "example_values": [
+                        "2017-06-00"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.number",
+                    "data_type": "string",
+                    "example_values": [
+                        "5102223333"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.country_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.phones.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.ages",
+                    "data_type": "numeric",
+                    "example_values": [
+                        86
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.full",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.salutation",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.first_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.last_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.middle_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.parts.suffix",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.names.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1931-08-28"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.first_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.relatives.*.last_seen",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.connections.relatives.*.dobs",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.dobs",
+                    "data_type": "string",
+                    "example_values": [
+                        "1994-10-25"
                     ]
                 },
                 {
@@ -1345,31 +1369,6 @@
                     "example_values": [
                         true,
                         false
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "",
-                        "Parameter combination validations failed. Please see the action documentation to get a list of valid parameter validations",
-                        "User found: True",
-                        "User found: False"
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1,
-                        0
                     ]
                 }
             ],
